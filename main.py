@@ -1,17 +1,13 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
+from schemas import UserSchema, UserPublic
+from http import HTTPStatus
 
 app = FastAPI()
 
-@app.get('/', response_class=HTMLResponse)
-def read_root():
-    return """
-    <html>
-    <head>
-    <title>Olá Mundo!</title>
-    </head
-    <body>
-    <h1>Olá Mundo!</h1>
-    </body>
-    </html>
-    """
+# ...
+
+@app.post('/users', status_code=HTTPStatus.CREATED, response_model=UserPublic)
+def create_user(user: UserSchema):
+ return user
+ ...
